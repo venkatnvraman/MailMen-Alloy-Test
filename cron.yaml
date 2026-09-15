@@ -1,0 +1,21 @@
+version: 1
+#Wichtig: Cronjobs werden 2 Stunden später als angegeben ausgeführt, also wenn "0 11 * * *" -> Ausführung täglich um 13:00 Uhr, ok?
+cron:
+  - name: "Warteschlange füllen - abends"
+    url: "/jobs/fill_queue.php?type=evening"
+    schedule: "* 19-21 * * *"
+  - name: "Warteschlange füllen - nachts 1"
+    url: "/jobs/fill_queue.php"
+    schedule: "* 22-23 * * *"
+  - name: "Warteschlange füllen - nachts 2"
+    url: "/jobs/fill_queue.php"
+    schedule: "* 0-5 * * *"
+  # - name: "Warteschlange füllen - Sonder-Import (Morgen)"
+  #   url: "/jobs/fill_queue.php?type=evening"
+  #   schedule: "* 8-18 * * *"
+  # - name: "Warteschlange füllen - Sonder-Import (Heute)"
+  #   url: "/jobs/fill_queue.php"
+  #   schedule: "* 6-21 * * *"
+  - name: "Emails versenden"
+    url: "/jobs/send_emails.php"
+    schedule: "* 6-21 * * *"
